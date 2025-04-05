@@ -101,6 +101,9 @@ html {
 
 body {
   color: var(--default-color);
+/* background: linear-gradient(180deg, #0f0f0f, #1f1f1f); */
+background: linear-gradient(to bottom, #111827, #000000);
+
 
 /*   background-color: var(--background-color); */
   font-family: var(--default-font);
