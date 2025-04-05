@@ -101,7 +101,8 @@ html {
 
 body {
   color: var(--default-color);
-  background-color: var(--background-color);
+
+/*   background-color: var(--background-color); */
   font-family: var(--default-font);
 }
 
@@ -805,7 +806,7 @@ h6 {
 section,
 .section {
   color: var(--default-color);
-  background-color: var(--background-color);
+/*   background-color: var(--background-color); */
   padding: 60px 0;
   scroll-margin-top: 90px;
   overflow: clip;
