@@ -52,8 +52,12 @@
 }
 
 
-
-
+/* gradient-text */
+.gradient-text {
+  background: linear-gradient(90deg, #f43f5e, #fda769, #facc15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
