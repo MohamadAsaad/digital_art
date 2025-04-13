@@ -135,14 +135,21 @@
         });
 
         onAuthStateChanged(auth, (user) => {
-            if (user && user.email === "mohamad.1987.test@gmail.com") {
-                loginSection.style.display = "none";
-                adminSection.style.display = "block";
-            } else {
-                alert("🚫 غير مصرح لك بالوصول إلى هذه الصفحة");
-                auth.signOut();
-            }
+          if (!user) {
+            // المستخدم لم يسجل الدخول بعد
+            loginSection.style.display = "block";
+            adminSection.style.display = "none";
+          } else if (user.email === "mohamad.1987.test@gmail.com") {
+            // تسجيل دخول ناجح ومصرح
+            loginSection.style.display = "none";
+            adminSection.style.display = "block";
+          } else {
+            // تسجيل دخول لكن ببريد غير مصرح
+            alert("🚫 غير مصرح لك بالوصول إلى هذه الصفحة");
+            auth.signOut();
+          }
         });
+
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
