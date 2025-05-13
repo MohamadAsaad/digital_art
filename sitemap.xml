@@ -2,48 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- الصفحة الرئيسية باللغة العربية -->
     <url>
-        <loc>https://digital-art.website/</loc>
+        <loc>https://www.di9ital.site/</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>1.0</priority>
     </url>
 
     <!-- الصفحات الأخرى باللغة العربية -->
     <url>
-        <loc>https://digital-art.website/about</loc>
+        <loc>https://www.di9ital.site/about</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://digital-art.website/services</loc>
+        <loc>https://www.di9ital.site/services</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://digital-art.website/contact</loc>
+        <loc>https://www.di9ital.site/contact</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
 
     <!-- الصفحة الرئيسية باللغة الإنجليزية -->
     <url>
-        <loc>https://digital-art.website/en/</loc>
+        <loc>https://www.di9ital.site/en/</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>1.0</priority>
     </url>
 
     <!-- الصفحات الأخرى باللغة الإنجليزية -->
     <url>
-        <loc>https://digital-art.website/en/about</loc>
+        <loc>https://www.di9ital.site/en/about</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://digital-art.website/en/services</loc>
+        <loc>https://www.di9ital.site/en/services</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://digital-art.website/en/contact</loc>
+        <loc>https://www.di9ital.site/en/contact</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>

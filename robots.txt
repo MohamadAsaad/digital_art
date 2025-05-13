@@ -5,4 +5,4 @@ Disallow: /tmp/        # منع الوصول إلى المجلد المؤقت
 Disallow: /cgi-bin/    # منع الوصول إلى مجلد السكربتات القديمة
 
 # خريطة الموقع لتحسين الفهرسة
-Sitemap: https://digital-art.website/sitemap.xml
+Sitemap: https://di9ital.site/sitemap.xml
