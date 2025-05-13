@@ -16,7 +16,7 @@
     <meta property="og:title" content="Digital Art - تصميم وتطوير المواقع الإلكترونية | تحسين محركات البحث">
     <meta property="og:description"
         content="Digital Art تقدم خدمات تصميم وتطوير المواقع الإلكترونية، تحسين محركات البحث (SEO)، وحلول التجارة الإلكترونية في تركيا. جودة عالية، أداء سريع، وتجربة مستخدم ممتازة.">
-    <meta property="og:image" content="https://digital-art.website/assets/img/logo.png">
+    <meta property="og:image" content="https://www.di9ital.site/assets/img/logo.png">
     <meta property="og:url" content="https://digital-art.website">
     <meta property="og:type" content="website">
 
@@ -25,7 +25,7 @@
     <meta name="twitter:title" content="Digital Art - تصميم وتطوير المواقع الإلكترونية | تحسين محركات البحث">
     <meta name="twitter:description"
         content="Digital Art تقدم خدمات تصميم وتطوير المواقع الإلكترونية، تحسين محركات البحث (SEO)، وحلول التجارة الإلكترونية في تركيا. جودة عالية، أداء سريع، وتجربة مستخدم ممتازة.">
-    <meta name="twitter:image" content="https://digital-art.website/assets/img/logo.png">
+    <meta name="twitter:image" content="https://www.di9ital.site/assets/img/logo.png">
 
     <!-- Canonical Tag -->
     <link rel="canonical" href="https://digital-art.website" />
@@ -63,7 +63,7 @@
       "@type": "Organization",
       "name": "Digital Art",
       "url": "https://digital-art.website",
-      "logo": "https://digital-art.website/assets/img/logo.png",
+      "logo": "https://www.di9ital.site/assets/img/logo.png",
       "description": "Digital Art تقدم خدمات تصميم وتطوير المواقع الإلكترونية، تحسين محركات البحث (SEO)، وحلول التجارة الإلكترونية في تركيا.",
       "contactPoint": {
         "@type": "ContactPoint",
@@ -88,7 +88,7 @@
       "url": "https://digital-art.website",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://digital-art.website/search?q={search_term_string}",
+        "target": "https://www.di9ital.site/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -110,13 +110,13 @@
           "@type": "ListItem",
           "position": 2,
           "name": "من نحن",
-          "item": "https://digital-art.website/about"
+          "item": "https://www.di9ital.site/about"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "الخدمات",
-          "item": "https://digital-art.website/services"
+          "item": "https://www.di9ital.site/services"
         }
       ]
     }
@@ -350,8 +350,9 @@
                                 <div class="portfolio-info">
                                     <h4> موقع برستيل </h4>
 
-                                    <a href="https://pr-steel.com/" class="preview-link" data-bs-toggle="modal"
-                                        data-bs-target="#project1Modal"><i class="bi bi-eye"></i> معاينة</a>
+                                    <a href="https://pr-steel.com/" class="preview-link" target="_blank"
+                                        data-bs-toggle="modal" data-bs-target="#project1Modal"><i class="bi bi-eye"></i>
+                                        معاينة</a>
                                 </div>
                             </div>
                         </div><!-- End Project 1 -->
@@ -366,8 +367,9 @@
                                 <div class="portfolio-info">
                                     <h4> موقع برستيل </h4>
 
-                                    <a href="https://pr-steel.com/" class="preview-link" data-bs-toggle="modal"
-                                        data-bs-target="#project3Modal"><i class="bi bi-eye"></i> معاينة</a>
+                                    <a href="https://pr-steel.com/" class="preview-link" target="_blank"
+                                        data-bs-toggle="modal" data-bs-target="#project3Modal"><i class="bi bi-eye"></i>
+                                        معاينة</a>
                                 </div>
                             </div>
                         </div><!-- End Project 3 -->
@@ -1282,26 +1284,23 @@
     </script>
     <script>
         var swiper = new Swiper(".portfolio-slider", {
-            slidesPerView: 3,
-            spaceBetween: 20,
-            loop: true,
+            slidesPerView: 1, // يعرض مشروع واحد على الجوال
+            spaceBetween: 20, // مسافة بين المشاريع
+            loop: true, // تكرار المشاريع بشكل لا نهائي
             pagination: {
-                el: ".swiper-pagination",
+                el: ".swiper-pagination", // نقاط التصفح
                 clickable: true,
             },
             navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-button-next", // زر التالي
+                prevEl: ".swiper-button-prev", // زر السابق
             },
             breakpoints: {
-                1024: {
-                    slidesPerView: 1
+                576: { // على شاشات متوسطة
+                    slidesPerView: 2 // يعرض مشروعين
                 },
-                768: {
-                    slidesPerView: 1
-                },
-                576: {
-                    slidesPerView: 1
+                992: { // على شاشات كبيرة
+                    slidesPerView: 3 // يعرض ثلاثة مشاريع
                 }
             }
         });
