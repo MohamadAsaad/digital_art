@@ -1,0 +1,398 @@
+:root {
+    --primary-color: #007bff; /* أزرق عصري */
+    --secondary-color: #28a745; /* أخضر مريح */
+    --accent-color: #ffc107; /* أصفر ذهبي */
+    --text-color: #343a40; /* رمادي داكن */
+    --light-bg: #f8f9fa; /* خلفية فاتحة جدًا */
+    --card-bg: #ffffff; /* خلفية البطاقة بيضاء */
+    --border-color: rgba(0, 0, 0, 0.08); /* لون حدود خفيف */
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05); /* ظل خفيف */
+    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.1); /* ظل متوسط */
+    --whatsapp-color: #25D366;
+    --facebook-color: #1877F2;
+    --twitter-color: #1DA1F2;
+}
+
+/* إعادة ضبط أساسية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif; /* خط عربي عصري */
+    background: linear-gradient(135deg, var(--light-bg) 0%, #e0e7ee 100%); /* تدرج لوني ناعم */
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    overflow: hidden; /* إخفاء شريط التمرير الأفقي */
+    position: relative;
+}
+
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.7; /* شفافية خفيفة */
+}
+
+.eid-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow-medium);
+    padding: 2.5rem 3rem;
+    width: 90%;
+    max-width: 550px; /* زيادة قليلاً للعرض */
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    border: 1px solid var(--border-color);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    transition: all 0.5s ease-out; /* انتقال أكثر سلاسة */
+    overflow: hidden;
+}
+
+.eid-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); /* تأثير توهج خفيف */
+    transform: rotate(45deg);
+    z-index: -1;
+    animation: shine-pulse 4s infinite alternate; /* حركة توهج نبضية */
+}
+
+@keyframes shine-pulse {
+    0% { transform: scale(0.9) rotate(45deg); opacity: 0.5; }
+    100% { transform: scale(1.1) rotate(45deg); opacity: 0.7; }
+}
+
+.eid-header {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.moon-islamic {
+    width: 100px; /* حجم أكبر قليلاً */
+    height: 100px;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); /* ألوان ذهبية */
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); /* توهج أكبر */
+    animation: float-subtle 8s ease-in-out infinite; /* حركة عائمة أكثر نعومة */
+    overflow: hidden; /* لإخفاء النجوم خارج الهلال */
+}
+
+.moon-islamic::before {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: var(--card-bg); /* لون خلفية البطاقة لإنشاء شكل الهلال */
+    border-radius: 50%;
+    top: 5px;
+    right: 15px; /* لضبط شكل الهلال */
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.1); /* ظل داخلي للهلال */
+}
+
+.moon-islamic::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FFF;
+    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+    box-shadow: 0 0 15px #FFF;
+    animation: twinkling 2s infinite alternate; /* تأثير نجمة متلألئة */
+}
+
+@keyframes float-subtle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(2deg); }
+    75% { transform: translateY(10px) rotate(-2deg); }
+}
+
+@keyframes twinkling {
+    0% { opacity: 0.5; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+
+.eid-title {
+    font-family: 'Amiri', serif; /* خط عربي تقليدي وأنيق للعنوان */
+    font-size: 3.2rem; /* حجم أكبر */
+    font-weight: 700; /* وزن مناسب */
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15); /* ظل نص أكثر وضوحًا */
+    letter-spacing: 1px; /* تباعد الحروف */
+}
+
+.eid-subtitle {
+    font-size: 1.3rem; /* حجم أكبر */
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.eid-content {
+    margin-bottom: 2.5rem; /* مسافة أكبر */
+    line-height: 2; /* تباعد أسطر مريح */
+    font-size: 1.15rem; /* حجم خط أكبر */
+    color: var(--text-color);
+}
+
+.eid-content p {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.eid-content p:hover::after {
+    opacity: 1;
+    width: 80px; /* عرض أطول للتأثير */
+    background: var(--primary-color); /* لون عصري للخط */
+}
+
+.eid-signature {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border-color); /* خط متقطع أنيق */
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.signature-company {
+    font-size: 1.8rem; /* حجم كبير لاسم الشركة */
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+    letter-spacing: 1px;
+}
+
+.signature-name {
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.website-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.website-link a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.social-share {
+    display: flex;
+    flex-wrap: wrap; /* للسماح بالعناصر بالانتقال لسطر جديد على الشاشات الصغيرة */
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.8rem; /* حشوة أكبر للأزرار */
+    border-radius: 30px; /* حواف أكثر استدارة */
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* انتقال بوزن بصرية أفضل */
+    border: none;
+    color: white;
+    box-shadow: var(--shadow-light);
+    min-width: 180px; /* ضمان حد أدنى للعرض */
+}
+
+.share-btn svg {
+    width: 22px; /* حجم أكبر للأيقونات */
+    height: 22px;
+    margin-left: 12px; /* مسافة أكبر */
+    fill: currentColor;
+}
+
+.share-btn:hover {
+    transform: translateY(-5px); /* حركة رفع أكبر */
+    box-shadow: var(--shadow-medium);
+}
+
+.whatsapp {
+    background-color: var(--whatsapp-color);
+}
+
+.facebook {
+    background-color: var(--facebook-color);
+}
+
+.twitter {
+    background-color: var(--twitter-color);
+}
+
+.eid-decoration {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* مسافة أكبر بين الفوانيس */
+    z-index: 5;
+}
+
+.lantern-modern {
+    width: 45px; /* حجم أكبر قليلاً */
+    height: 70px;
+    background: linear-gradient(to bottom, var(--accent-color), var(--primary-color)); /* تدرج لوني جديد */
+    border-radius: 8px; /* حواف أكثر نعومة */
+    position: relative;
+    animation: swing-modern 4s infinite alternate ease-in-out; /* حركة أبطأ وأكثر سلاسة */
+    opacity: 0.9;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.lantern-modern::before {
+    content: '';
+    position: absolute;
+    top: -8px; /* ضبط الموضع */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #FFEB3B; /* لون ضوء أكثر إشراقًا */
+    border-radius: 50%;
+    box-shadow: 0 0 15px #FFEB3B, 0 0 25px #FFEB3B; /* توهج ضوئي */
+}
+
+.lantern-modern:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.lantern-modern:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+@keyframes swing-modern {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+}
+
+/* تأثيرات الظهور */
+.fade-in {
+    animation: fadeIn 1s ease-out forwards; /* انتقال أبطأ قليلاً */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); } /* بداية من مكان أبعد */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media Queries لتحسين الاستجابة */
+@media (max-width: 768px) {
+    .eid-card {
+        padding: 2rem;
+        max-width: 95%;
+    }
+
+    .eid-title {
+        font-size: 2.5rem;
+    }
+
+    .eid-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .moon-islamic {
+        width: 80px;
+        height: 80px;
+    }
+
+    .moon-islamic::before {
+        width: 70px;
+        height: 70px;
+        right: 10px;
+    }
+
+    .eid-content {
+        font-size: 1rem;
+    }
+
+    .signature-company {
+        font-size: 1.5rem;
+    }
+
+    .signature-name {
+        font-size: 1rem;
+    }
+
+    .share-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+        min-width: unset; /* إلغاء الحد الأدنى للعرض للسماح بالتكيف */
+        flex-grow: 1; /* للسماح للأزرار بالنمو لتملأ المساحة المتاحة */
+    }
+
+    .share-btn svg {
+        width: 18px;
+        height: 18px;
+        margin-left: 8px;
+    }
+
+    .lantern-modern {
+        width: 35px;
+        height: 55px;
+    }
+
+    .lantern-modern::before {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eid-card {
+        padding: 1.5rem;
+    }
+
+    .eid-title {
+        font-size: 2rem;
+    }
+
+    .eid-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .eid-content {
+        font-size: 0.95rem;
+    }
+
+    .social-share {
+        flex-direction: column; /* جعل الأزرار مكدسة عمودياً */
+        gap: 0.8rem;
+    }
+}
