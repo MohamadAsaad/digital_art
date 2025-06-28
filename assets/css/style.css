@@ -253,7 +253,8 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
+max-height: 38px;
+/*   max-height: 36px; */
   margin-inline-end: 8px;
 }
 
