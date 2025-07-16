@@ -131,8 +131,8 @@ const rules = [
     {
         keywords: pageLang === "ar" ? ["اتصال", "تواصل", "رقم", "هاتف", "بريد", "كيف", "التواصل", "الايميل"] : ["contact", "how to reach", "get in touch", "phone", "email", "contact us"],
         response: pageLang === "ar" ?
-            "يمكنك التواصل معنا عبر:\n- البريد: info@digital-art.website\n- الهاتف: 00905398847282\n- الواتساب: نفس الرقم\nأي وسيلة تفضلها؟" :
-            "You can contact us via:\n- Email: info@digital-art.website\n- Phone: 00905398847282\n- WhatsApp: same number\nWhich method do you prefer?"
+            "يمكنك التواصل معنا عبر:\n- البريد: di9ital.site@gmail.com\n- الهاتف: 00905398847282\n- الواتساب: نفس الرقم\nأي وسيلة تفضلها؟" :
+            "You can contact us via:\n- Email: di9ital.site@gmail.com\n- Phone: 00905398847282\n- WhatsApp: same number\nWhich method do you prefer?"
     },
     {
         keywords: pageLang === "ar" ? ["مكتبكم", "الموقع الجغرافي", "زيارة المكتب", "عنوانكم", "العنوان"] : ["your office", "location", "visit us", "your address", "address"],
@@ -329,8 +329,8 @@ function findReply(message) {
 
     // الرد الافتراضي
     return pageLang === "ar"
-        ? "لم أفهم سؤالك. لمزيد من المعلومات عن خدماتنا يمكنك التواصل معنا عبر البريد الإلكتروني: info@digital-art.website أو الاتصال بنا على الرقم: 00905398847282."
-        : "I didn't understand your question. You can contact us via email: info@digital-art.website or call us at: 00905398847282.";
+        ? "لم أفهم سؤالك. لمزيد من المعلومات عن خدماتنا يمكنك التواصل معنا عبر البريد الإلكتروني: di9ital.site@gmail.com أو الاتصال بنا على الرقم: 00905398847282."
+        : "I didn't understand your question. You can contact us via email: di9ital.site@gmail.com or call us at: 00905398847282.";
 }
 
 // إضافة رسالة للدردشة

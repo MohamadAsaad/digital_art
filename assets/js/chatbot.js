@@ -13,7 +13,7 @@ const arabicText = {
     placeholder: "اكتب سؤالك هنا...",
     responses: {
         services: "نقدم خدمات تصميم الويب، التسويق الرقمي، وتطوير المواقع الإلكترونية .",
-        contact: "يمكنك التواصل معنا عبر البريد الإلكتروني: info@digital-art.website",
+        contact: "يمكنك التواصل معنا عبر البريد الإلكتروني: di9ital.site@gmail.com",
         pricing: "الأسعار تختلف حسب الخدمة المطلوبة. يرجى التواصل معنا للحصول على عرض سعر.",
         default: "شكرًا على سؤالك! سنرد عليك قريبًا."
     },
@@ -34,7 +34,7 @@ const englishText = {
     placeholder: "Type your question here...",
     responses: {
         services: "We offer web design, digital marketing, and web development services.",
-        contact: "You can contact us via email: info@digital-art.website",
+        contact: "You can contact us via email: di9ital.site@gmail.com",
         pricing: "Prices vary depending on the required service. Please contact us for a quote.",
         default: "Thank you for your question! We will get back to you soon."
     },

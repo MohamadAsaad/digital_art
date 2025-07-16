@@ -59,3 +59,29 @@ left: unset;
 right: 0;
 bottom: 0;
 }
+
+
+
+/* swiper */
+/* إصلاح أسهم التمرير في حالة RTL */
+.swiper-rtl .swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+  content: ''; /* إزالة المحتوى الافتراضي */
+}
+
+.swiper-rtl .swiper-button-next .bi-chevron-left,
+.swiper-rtl .swiper-button-prev .bi-chevron-right {
+  display: block;
+  font-size: 1.5rem;
+}
+
+/* تصحيح اتجاه الأسهم */
+.swiper-rtl .swiper-button-next {
+  left: 10px;
+  right: auto;
+}
+
+.swiper-rtl .swiper-button-prev {
+  right: 10px;
+  left: auto;
+}

@@ -5,7 +5,7 @@ async function loadComponent(componentPath, placeholderId) {
         return;
     }
 
-    // مؤشر تحميل مؤقت
+    // إضافة مؤشر تحميل
     placeholder.innerHTML = '<div class="loading-spinner">Loading...</div>';
 
     try {
@@ -14,11 +14,9 @@ async function loadComponent(componentPath, placeholderId) {
         const data = await response.text();
         placeholder.innerHTML = data;
 
-        // تهيئة الأحداث الخاصة بكل مكون
+        // تهيئة الأحداث بعد تحميل الـ Header
         if (placeholderId === 'header') {
             initializeHeaderEvents();
-        } else if (placeholderId === 'contact') {
-            initializeContactForm();
         }
     } catch (error) {
         placeholder.innerHTML = '<div>Error loading component.</div>';
@@ -26,50 +24,8 @@ async function loadComponent(componentPath, placeholderId) {
     }
 }
 
-// تهيئة نموذج الاتصال بعد تحميله
-function initializeContactForm() {
-    const form = document.querySelector('.php-email-form');
-    if (!form) return;
-
-    const loading = form.querySelector('.loading');
-    const errorMessage = form.querySelector('.error-message');
-    const sentMessage = form.querySelector('.sent-message');
-
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        loading.style.display = 'block';
-        errorMessage.style.display = 'none';
-        sentMessage.style.display = 'none';
-
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.text())
-            .then(text => {
-                loading.style.display = 'none';
-
-                if (text.trim() === 'OK') {
-                    sentMessage.style.display = 'block';
-                    form.reset();
-                } else {
-                    errorMessage.innerHTML = text;
-                    errorMessage.style.display = 'block';
-                }
-            })
-            .catch(error => {
-                loading.style.display = 'none';
-                errorMessage.innerHTML = 'حدث خطأ أثناء إرسال النموذج.';
-                errorMessage.style.display = 'block';
-            });
-    });
-}
-
-// تهيئة زر القائمة والمظهر الليلي في الهيدر
 function initializeHeaderEvents() {
+    // تهيئة زر القائمة للموبايل
     const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
     if (mobileNavToggleBtn) {
         mobileNavToggleBtn.addEventListener('click', () => {
@@ -79,12 +35,14 @@ function initializeHeaderEvents() {
         });
     }
 
+    // تهيئة زر تبديل الوضع الليلي
     const themeToggleBtn = document.getElementById('themeToggle');
     if (!themeToggleBtn) return;
 
     const icon = themeToggleBtn.querySelector('i');
     const savedTheme = localStorage.getItem('theme') || 'dark';
 
+    // تطبيق الوضع المحفوظ
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateIcon(savedTheme === 'dark');
 
@@ -109,9 +67,8 @@ function initializeHeaderEvents() {
     }
 }
 
-// تحميل جميع المكونات عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', async function () {
     await loadComponent('header.html', 'header');
     await loadComponent('footer.html', 'footer');
-    await loadComponent('contact-form.html', 'contact'); // هذا الذي يحتوي على النموذج
+    await loadComponent('contact-form.html', 'contact');
 });
