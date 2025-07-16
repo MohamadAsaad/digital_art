@@ -751,7 +751,7 @@ section,
     max-width: 50%;
     margin: 0 auto;
     position: relative;
-    top: 70px;
+    top: 55px;
   }
   .hero .customers-badge{
     visibility: hidden; /* إخفاء شارة العملاء على الشاشات الصغيرة */
@@ -871,9 +871,23 @@ section,
   backdrop-filter: blur(5px);
 }
 
+.hero .stats-row::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  z-index: -1;
+  background-color:#081326;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  backdrop-filter: blur(5px);
+  
+}
+
 .hero .stat-item {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   gap: 1rem;
   padding: 1.5rem;
 }
@@ -2963,6 +2977,8 @@ section,
   }
   
   .hero .stats-row {
+    width: 90%;
+    margin: 0 auto;
     margin-top: 2rem;
     background-color: var(--surface-color);
   }
@@ -3025,4 +3041,133 @@ section,
 
 .theme-toggle-spin {
   animation: spin 0.5s ease-in-out;
+}
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# Floating Elements - عناصر تطفو على الصفحة
+--------------------------------------------------------------*/
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(30px);
+  animation: float-animation linear infinite;
+}
+
+/* العناصر الكبيرة */
+.floating-element.large {
+  width: 300px;
+  height: 300px;
+}
+
+/* العناصر المتوسطة */
+.floating-element.medium {
+  width: 150px;
+  height: 150px;
+}
+
+/* العناصر الصغيرة */
+.floating-element.small {
+  width: 80px;
+  height: 80px;
+}
+
+/* ألوان العناصر */
+.floating-element.primary {
+  background-color: var(--primary-color);
+}
+
+.floating-element.secondary {
+  background-color: var(--secondary-color);
+}
+
+.floating-element.accent {
+  background-color: var(--accent-color);
+}
+
+.floating-element.warning {
+  background-color: var(--warning-color);
+}
+
+/* حركة العناصر */
+@keyframes float-animation {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10vw, 10vh) rotate(90deg);
+  }
+  50% {
+    transform: translate(20vw, -10vh) rotate(180deg);
+  }
+  75% {
+    transform: translate(-10vw, 15vh) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+/* تحديد مواقع العناصر وتوقيتات الحركة */
+.floating-element:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  animation-duration: 25s;
+}
+
+.floating-element:nth-child(2) {
+  top: 70%;
+  left: 80%;
+  animation-duration: 30s;
+  animation-delay: -5s;
+}
+
+.floating-element:nth-child(3) {
+  top: 30%;
+  left: 60%;
+  animation-duration: 20s;
+  animation-delay: -10s;
+}
+
+.floating-element:nth-child(4) {
+  top: 80%;
+  left: 20%;
+  animation-duration: 35s;
+  animation-delay: -15s;
+}
+
+.floating-element:nth-child(5) {
+  top: 50%;
+  left: 50%;
+  animation-duration: 40s;
+  animation-delay: -20s;
+}
+
+/* تأثيرات خاصة للوضع الليلي والنهاري */
+[data-theme="light"] .floating-element {
+  opacity: 0.08;
+  filter: blur(20px);
+}
+
+[data-theme="dark"] .floating-element {
+  opacity: 0.12;
+  filter: blur(40px);
 }
