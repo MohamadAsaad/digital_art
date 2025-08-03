@@ -81,7 +81,14 @@ bottom: 0;
   right: auto;
 }
 
+.footer h4:after {
+    
+    left: unset;
+    right: 0;
+}
+
 .swiper-rtl .swiper-button-prev {
   right: 10px;
   left: auto;
+
 }
