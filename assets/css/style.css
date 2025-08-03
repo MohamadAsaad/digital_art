@@ -1087,6 +1087,10 @@ section,
   width: 45%;
 /*   border: 8px solid var(--surface-color); */
 }
+@media (max-width: 767px) {
+  .about .image-wrapper .small-image {
+    display: none;
+  }
 
 @media (max-width: 992px) {
   .about .image-wrapper .small-image {
