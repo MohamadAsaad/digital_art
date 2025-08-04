@@ -9,17 +9,17 @@
 
     <!-- الصفحات الأخرى باللغة العربية -->
     <url>
-        <loc>https://www.di9ital.site/about</loc>
+        <loc>https://www.di9ital.site/about.html</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.di9ital.site/services</loc>
+        <loc>https://www.di9ital.site/services.html</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.di9ital.site/contact</loc>
+        <loc>https://www.di9ital.site/contact.html</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
@@ -33,18 +33,19 @@
 
     <!-- الصفحات الأخرى باللغة الإنجليزية -->
     <url>
-        <loc>https://www.di9ital.site/en/about</loc>
+        <loc>https://www.di9ital.site/en/about.html</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.di9ital.site/en/services</loc>
+        <loc>https://www.di9ital.site/en/services.html</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.di9ital.site/en/contact</loc>
+        <loc>https://www.di9ital.site/en/contact.html</loc>
         <lastmod>2025-01-02T20:44:22+00:00</lastmod>
         <priority>0.8</priority>
     </url>
+
 </urlset>
