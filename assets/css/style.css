@@ -1091,6 +1091,7 @@ section,
   .about .image-wrapper .small-image {
     display: none;
   }
+}
 
 @media (max-width: 992px) {
   .about .image-wrapper .small-image {
@@ -1698,6 +1699,7 @@ section,
   .features-2 .phone-mockup img {
       margin: 0 auto;
   }
+}
 
 @media (max-width: 991.98px) {
   .features-2 .feature-item {
