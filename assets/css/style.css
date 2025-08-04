@@ -1697,13 +1697,10 @@ section,
 .features-2 .phone-mockup img {
   max-width: 300px;
   height: auto;
+ margin: 0 auto;
   filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
 }
-@media (max-width: 767px) {
-  .features-2 .phone-mockup img {
-      margin: 0 auto;
-  }
-}
+
 
 @media (max-width: 991.98px) {
   .features-2 .feature-item {
