@@ -1,41 +1,37 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('contactForm'); // تحديد النموذج
-  const loading = form.querySelector('.loading'); // رسالة التحميل
-  const errorMessage = form.querySelector('.error-message'); // رسالة الخطأ
-  const sentMessage = form.querySelector('.sent-message'); // رسالة النجاح
+  const form = document.getElementById('contactForm');
+  const loading = form.querySelector('.loading');
+  const errorMessage = form.querySelector('.error-message');
+  const sentMessage = form.querySelector('.sent-message');
 
   form.addEventListener('submit', function (e) {
-    e.preventDefault(); // منع الإرسال التقليدي
+    e.preventDefault();
 
-    // إظهار رسالة التحميل وإخفاء الرسائل الأخرى
     loading.style.display = 'block';
     errorMessage.style.display = 'none';
     sentMessage.style.display = 'none';
 
-    // إرسال النموذج عبر Fetch API
     fetch(form.action, {
       method: 'POST',
       body: new FormData(form),
-      headers: {
-        'Accept': 'application/json'
-      }
+      headers: { 'Accept': 'application/json' }
     })
-      .then(response => response.json())
-      .then(data => {
-        loading.style.display = 'none'; // إخفاء رسالة التحميل
-
-        if (data.status === 'success') {
-          sentMessage.style.display = 'block'; // إظهار رسالة النجاح
-          form.reset(); // إعادة تعيين النموذج
+      .then(response => {
+        loading.style.display = 'none';
+        if (response.ok) {
+          sentMessage.style.display = 'block';
+          form.reset();
         } else {
-          errorMessage.textContent = data.message || 'حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.';
-          errorMessage.style.display = 'block'; // إظهار رسالة الخطأ
+          response.json().then(data => {
+            errorMessage.textContent = data.errors ? data.errors.map(err => err.message).join(', ') : 'حدث خطأ أثناء إرسال الرسالة.';
+            errorMessage.style.display = 'block';
+          });
         }
       })
       .catch(() => {
-        loading.style.display = 'none'; // إخفاء رسالة التحميل
+        loading.style.display = 'none';
         errorMessage.textContent = 'حدث خطأ في الاتصال بالخادم. يرجى المحاولة مرة أخرى.';
-        errorMessage.style.display = 'block'; // إظهار رسالة الخطأ
+        errorMessage.style.display = 'block';
       });
   });
 });
