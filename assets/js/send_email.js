@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
           form.reset();
         } else {
           response.json().then(data => {
-            errorMessage.textContent = data.errors ? data.errors.map(err => err.message).join(', ') : 'حدث خطأ أثناء إرسال الرسالة.';
+            errorMessage.textContent = data.errors
+              ? data.errors.map(err => err.message).join(', ')
+              : 'حدث خطأ أثناء إرسال الرسالة.';
             errorMessage.style.display = 'block';
           });
         }
