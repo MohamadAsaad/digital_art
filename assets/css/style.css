@@ -1098,7 +1098,7 @@ section,
   }
 }
 /* الصورة تختفي على اجهزة التابلت */
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
     .about .image-wrapper .small-image {
         display: none;
     }
