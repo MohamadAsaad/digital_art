@@ -1091,11 +1091,19 @@ section,
   width: 45%;
 /*   border: 8px solid var(--surface-color); */
 }
+/* الصورة تختفي على اجهزة الموبايل */
 @media (max-width: 767px) {
   .about .image-wrapper .small-image {
     display: none;
   }
 }
+/* الصورة تختفي على اجهزة التابلت */
+@media (max-width: 1024px) {
+    .about .image-wrapper .small-image {
+        display: none;
+    }
+}
+
 
 @media (max-width: 992px) {
   .about .image-wrapper .small-image {
