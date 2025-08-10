@@ -187,8 +187,8 @@ const rules = [
     {
         keywords: ["تواصل", "اتصال", "whatsapp", "contact", "call"],
         response: {
-            ar: "يمكنك التواصل عبر:\nواتساب: +905398847282\nالبريد: info@digitalart.com",
-            en: "You can reach us via:\nWhatsApp: +905398847282\nEmail: info@digitalart.com"
+            ar: "يمكنك التواصل عبر:\nواتساب: +905398847282\nالبريد: di9ital.site@gmail.com",
+            en: "You can reach us via:\nWhatsApp: +905398847282\nEmail: di9ital.site@gmail.com"
         }
     }
 ];
@@ -336,3 +336,4 @@ document.addEventListener('DOMContentLoaded', () => {
     createChatbotElements();
     initChatbotEvents();
 });
+
