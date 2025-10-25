@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="مدونة تقنية متخصصة في أحدث التقنيات والبرمجة">
+    <title>مدونة التقنية - أحدث المقالات التقنية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-text: #6b7280;
+            --background-color: #ffffff;
+            --light-background: #f9fafb;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-background);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--background-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 30px 0;
+        }
+
+        /* Blog Posts */
+        .posts-container {
+            display: grid;
+            gap: 25px;
+        }
+
+        .post-card {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: var(--light-text);
+        }
+
+        .post-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .post-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .post-excerpt {
+            color: var(--light-text);
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Single Post View */
+        .single-post {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .single-post .post-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .single-post .post-meta {
+            margin-bottom: 20px;
+        }
+
+        .single-post .post-content {
+            padding: 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .categories-list {
+            list-style: none;
+        }
+
+        .categories-list li {
+            margin-bottom: 10px;
+        }
+
+        .categories-list a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+
+        .categories-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .category-count {
+            background-color: var(--light-background);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .admin-tab.active {
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--error-color);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .posts-list {
+            list-style: none;
+        }
+
+        .post-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .post-item:last-child {
+            border-bottom: none;
+        }
+
+        .post-item-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .post-item-meta {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            display: flex;
+            gap: 15px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #d1d5db;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+                margin-top: 15px;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0;
+                margin-bottom: 10px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 15px;
+                left: 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .post-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .post-actions {
+                align-self: flex-end;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>مدونة التقنية</span>
+                </div>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="#" class="nav-home active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="#" class="nav-blog"><i class="fas fa-blog"></i> المقالات</a></li>
+                        <li><a href="#" class="nav-categories"><i class="fas fa-tags"></i> التصنيفات</a></li>
+                        <li><a href="#" class="nav-admin" id="admin-toggle"><i class="fas fa-cogs"></i> لوحة التحكم</a>
+                        </li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Admin Panel (Hidden by Default) -->
+        <section id="admin-section" class="admin-panel hidden">
+            <div class="admin-header">
+                <h2 class="admin-title"><i class="fas fa-tachometer-alt"></i> لوحة إدارة المدونة</h2>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" id="new-post-btn"><i class="fas fa-plus"></i> منشور جديد</button>
+                    <button class="btn btn-outline" id="view-blog-btn"><i class="fas fa-eye"></i> عرض المدونة</button>
+                </div>
+            </div>
+
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <i class="fas fa-file-alt"></i>
+                    <div class="stat-number" id="total-posts">0</div>
+                    <div class="stat-label">إجمالي المنشورات</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-tags"></i>
+                    <div class="stat-number" id="total-categories">0</div>
+                    <div class="stat-label">إجمالي التصنيفات</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-day"></i>
+                    <div class="stat-number" id="today-posts">0</div>
+                    <div class="stat-label">منشورات اليوم</div>
+                </div>
+            </div>
+
+            <div class="admin-tabs">
+                <div class="admin-tab active" data-tab="posts-tab">المقالات</div>
+                <div class="admin-tab" data-tab="categories-tab">التصنيفات</div>
+                <div class="admin-tab" data-tab="settings-tab">الإعدادات</div>
+            </div>
+
+            <div id="posts-tab" class="tab-content active">
+                <h3 class="sidebar-title"><i class="fas fa-list"></i> قائمة المقالات</h3>
+                <ul class="posts-list" id="posts-list">
+                    <!-- Posts will be dynamically added here -->
+                </ul>
+            </div>
+
+            <div id="categories-tab" class="tab-content">
+                <h3 class="sidebar-title"><i class="fas fa-tags"></i> إدارة التصنيفات</h3>
+                <form id="category-form" class="mb-20">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category-name" class="form-label">اسم التصنيف</label>
+                            <input type="text" id="category-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category-color" class="form-label">لون التصنيف (اختياري)</label>
+                            <input type="color" id="category-color" class="form-control" value="#2563eb">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة التصنيف</button>
+                </form>
+
+                <h3 class="sidebar-title"><i class="fas fa-list"></i> التصنيفات الحالية</h3>
+                <ul class="categories-list" id="admin-categories-list">
+                    <!-- Categories will be dynamically added here -->
+                </ul>
+            </div>
+
+            <div id="settings-tab" class="tab-content">
+                <h3 class="sidebar-title"><i class="fas fa-cog"></i> إعدادات المدونة</h3>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="blog-title" class="form-label">اسم المدونة</label>
+                        <input type="text" id="blog-title" class="form-control" value="مدونة التقنية">
+                    </div>
+                    <div class="form-group">
+                        <label for="blog-description" class="form-label">وصف المدونة</label>
+                        <textarea id="blog-description"
+                            class="form-control">مدونة تقنية متخصصة في أحدث التقنيات والبرمجة</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="posts-per-page" class="form-label">عدد المقالات في الصفحة</label>
+                        <input type="number" id="posts-per-page" class="form-control" value="5" min="1" max="20">
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ الإعدادات</button>
+                </form>
+            </div>
+
+            <!-- Add/Edit Post Form (Initially Hidden) -->
+            <div id="post-form-container" class="hidden">
+                <h3 class="sidebar-title" id="post-form-title"><i class="fas fa-edit"></i> إضافة منشور جديد</h3>
+                <form id="post-form">
+                    <input type="hidden" id="post-id">
+                    <div class="form-group">
+                        <label for="post-title" class="form-label">عنوان المنشور</label>
+                        <input type="text" id="post-title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-category" class="form-label">التصنيف</label>
+                        <select id="post-category" class="form-control" required>
+                            <option value="">اختر تصنيف</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-content" class="form-label">محتوى المنشور</label>
+                        <textarea id="post-content" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-image" class="form-label">رابط الصورة (اختياري)</label>
+                        <input type="text" id="post-image" class="form-control"
+                            placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label for="post-status" class="form-label">حالة المنشور</label>
+                        <select id="post-status" class="form-control">
+                            <option value="published">منشور</option>
+                            <option value="draft">مسودة</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="save-post"><i class="fas fa-save"></i> حفظ
+                            المنشور</button>
+                        <button type="button" class="btn btn-outline" id="cancel-post"><i class="fas fa-times"></i>
+                            إلغاء</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Blog Content -->
+        <section id="blog-section">
+            <!-- Single Post View (Hidden by Default) -->
+            <div id="single-post-container" class="hidden">
+                <a href="#" class="back-to-blog"><i class="fas fa-arrow-right"></i> العودة إلى المدونة</a>
+                <div class="single-post" id="single-post-content">
+                    <!-- Single post content will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Blog Posts List -->
+            <div id="blog-posts-container">
+                <div class="main-content">
+                    <div class="posts-container" id="posts-container">
+                        <!-- Blog posts will be dynamically added here -->
+                    </div>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title"><i class="fas fa-tags"></i> التصنيفات</h3>
+                            <ul class="categories-list" id="categories-list">
+                                <!-- Categories will be dynamically added here -->
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title"><i class="fas fa-info-circle"></i> عن المدونة</h3>
+                            <p>مدونة تقنية متخصصة في تقديم أحدث المقالات والشروحات في مجال التكنولوجيا والبرمجة وتطوير
+                                الويب.</p>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title"><i class="fas fa-fire"></i> المقالات الشائعة</h3>
+                            <ul class="categories-list" id="popular-posts">
+                                <!-- Popular posts will be dynamically added here -->
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن المدونة</h3>
+                    <p>مدونة تقنية تقدم محتوى عالي الجودة في مجال التكنولوجيا والبرمجة، مع الالتزام بمعايير السيو وتجربة
+                        المستخدم المثالية.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
+                    <a href="#"><i class="fas fa-blog"></i> المقالات</a>
+                    <a href="#"><i class="fas fa-tags"></i> التصنيفات</a>
+                    <a href="#"><i class="fas fa-envelope"></i> اتصل بنا</a>
+                </div>
+                <div class="footer-section">
+                    <h3>اتصل بنا</h3>
+                    <p><i class="fas fa-envelope"></i> البريد الإلكتروني: info@techblog.com</p>
+                    <p><i class="fas fa-phone"></i> الهاتف: +966 123 456 789</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 مدونة التقنية. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data
+        let posts = [
+            {
+                id: 1,
+                title: "مقدمة في لغة JavaScript الحديثة",
+                content: "لغة JavaScript هي لغة برمجة عالية المستوى تستخدم primarily لتطوير الويب. في هذه المقالة، سنستكشف أحدث الميزات في ES6 وما بعدها. JavaScript أصبحت اللغة الأساسية لتطوير الويب، وتطورت بشكل كبير على مر السنين. مع إصدار ES6 في 2015، تم إضافة العديد من الميزات الجديدة التي جعلت اللغة أكثر قوة وسهولة في الاستخدام.<br><br>من بين هذه الميزات: <ul><li>Arrow Functions</li><li>Template Literals</li><li>Destructuring</li><li>Modules</li><li>Classes</li></ul>هذه الميزات وغيرها جعلت JavaScript لغة أكثر تعبيراً وسهولة في الصيانة.",
+                category: "برمجة",
+                date: "2023-10-15",
+                image: "https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=JavaScript",
+                status: "published",
+                views: 150
+            },
+            {
+                id: 2,
+                title: "أفضل ممارسات أمن المعلومات في 2023",
+                content: "مع تزايد الهجمات الإلكترونية، أصبح أمن المعلومات أكثر أهمية من أي وقت مضى. تعرف على أفضل الممارسات لحماية بياناتك.<br><br>في عالم اليوم الرقمي، يعد أمن المعلومات أمرًا بالغ الأهمية للأفراد والشركات على حد سواء. مع تزايد التهديدات الإلكترونية وتعقيدها، من الضروري تبني أفضل الممارسات الأمنية.<br><br>تشمل أفضل الممارسات: <ul><li>استخدام كلمات مرور قوية</li><li>تفعيل المصادقة الثنائية</li><li>تحديث البرامج باستمرار</li><li>النسخ الاحتياطي المنتظم للبيانات</li><li>التوعية الأمنية للموظفين</li></ul>باتباع هذه الممارسات، يمكنك تقليل خطر التعرض للهجمات الإلكترونية بشكل كبير.",
+                category: "أمن المعلومات",
+                date: "2023-10-10",
+                image: "https://via.placeholder.com/800x400/EF4444/FFFFFF?text=Security",
+                status: "published",
+                views: 210
+            },
+            {
+                id: 3,
+                title: "مقدمة في الذكاء الاصطناعي وتعلم الآلة",
+                content: "الذكاء الاصطناعي يحول عالمنا بسرعة. في هذه المقالة، سنقدم نظرة عامة على أساسيات الذكاء الاصطناعي وتعلم الآلة.<br><br>الذكاء الاصطناعي (AI) هو مجال من مجالات علوم الكمبيوتر مخصص لإنشاء آلات قادرة على أداء المهام التي تتطلب عادةً ذكاءً بشريًا. تعلم الآلة (ML) هو مجموعة فرعية من الذكاء الاصطناعي تركز على تطوير الخوارزميات التي تمكن Computers من التعلم من البيانات واتخاذ القرارات.<br><br>تشمل تطبيقات الذكاء الاصطناعي: <ul><li>المساعدات الافتراضية (مثل Siri وGoogle Assistant)</li><li>السيارات ذاتية القيادة</li><li>أنظمة التوصية</li><li>التشخيص الطبي</li><li>التعرف على الصور والكلام</li></ul>مع تقدم التكنولوجيا، من المتوقع أن يصبح الذكاء الاصطناعي أكثر تكاملاً في حياتنا اليومية.",
+                category: "الذكاء الاصطناعي",
+                date: "2023-10-05",
+                image: "https://via.placeholder.com/800x400/10B981/FFFFFF?text=AI",
+                status: "published",
+                views: 180
+            }
+        ];
+
+        let categories = [
+            { name: "برمجة", color: "#2563eb", count: 1 },
+            { name: "تطوير الويب", color: "#3b82f6", count: 0 },
+            { name: "أمن المعلومات", color: "#ef4444", count: 1 },
+            { name: "الذكاء الاصطناعي", color: "#10b981", count: 1 },
+            { name: "تقنيات حديثة", color: "#f59e0b", count: 0 }
+        ];
+
+        let settings = {
+            blogTitle: "مدونة التقنية",
+            blogDescription: "مدونة تقنية متخصصة في أحدث التقنيات والبرمجة",
+            postsPerPage: 5
+        };
+
+        // DOM Elements
+        const adminSection = document.getElementById('admin-section');
+        const blogSection = document.getElementById('blog-section');
+        const adminToggle = document.getElementById('admin-toggle');
+        const viewBlogBtn = document.getElementById('view-blog-btn');
+        const newPostBtn = document.getElementById('new-post-btn');
+        const postFormContainer = document.getElementById('post-form-container');
+        const postForm = document.getElementById('post-form');
+        const categoryForm = document.getElementById('category-form');
+        const settingsForm = document.getElementById('settings-form');
+        const postsContainer = document.getElementById('posts-container');
+        const categoriesList = document.getElementById('categories-list');
+        const adminCategoriesList = document.getElementById('admin-categories-list');
+        const postsList = document.getElementById('posts-list');
+        const cancelPostBtn = document.getElementById('cancel-post');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        const singlePostContainer = document.getElementById('single-post-container');
+        const singlePostContent = document.getElementById('single-post-content');
+        const blogPostsContainer = document.getElementById('blog-posts-container');
+        const backToBlogBtn = document.querySelector('.back-to-blog');
+        const popularPostsList = document.getElementById('popular-posts');
+        const postCategorySelect = document.getElementById('post-category');
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Stats elements
+        const totalPostsEl = document.getElementById('total-posts');
+        const totalCategoriesEl = document.getElementById('total-categories');
+        const todayPostsEl = document.getElementById('today-posts');
+
+        // Navigation elements
+        const navHome = document.querySelector('.nav-home');
+        const navBlog = document.querySelector('.nav-blog');
+        const navCategories = document.querySelector('.nav-categories');
+        const navAdmin = document.querySelector('.nav-admin');
+
+        // Initialize the blog
+        document.addEventListener('DOMContentLoaded', function () {
+            renderBlogPosts();
+            renderCategories();
+            renderAdminCategories();
+            renderPopularPosts();
+            updateStats();
+            loadSettings();
+            setupAdminTabs();
+
+            // Set today's date for new posts
+            document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
+        });
+
+        // Toggle Admin Panel
+        adminToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            showAdminPanel();
+        });
+
+        navAdmin.addEventListener('click', function (e) {
+            e.preventDefault();
+            showAdminPanel();
+        });
+
+        viewBlogBtn.addEventListener('click', function () {
+            showBlog();
+        });
+
+        navHome.addEventListener('click', function (e) {
+            e.preventDefault();
+            showBlog();
+        });
+
+        navBlog.addEventListener('click', function (e) {
+            e.preventDefault();
+            showBlog();
+        });
+
+        function showAdminPanel() {
+            adminSection.classList.remove('hidden');
+            blogSection.classList.add('hidden');
+            navAdmin.classList.add('active');
+            navHome.classList.remove('active');
+            renderPostsList();
+            updateStats();
+        }
+
+        function showBlog() {
+            adminSection.classList.add('hidden');
+            blogSection.classList.remove('hidden');
+            navAdmin.classList.remove('active');
+            navHome.classList.add('active');
+            hideSinglePost();
+        }
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', function () {
+            mainNav.classList.toggle('active');
+        });
+
+        // Admin Tabs
+        function setupAdminTabs() {
+            adminTabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const tabId = this.getAttribute('data-tab');
+
+                    // Remove active class from all tabs and contents
+                    adminTabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    // Add active class to current tab and content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+
+        // New Post Button
+        newPostBtn.addEventListener('click', function () {
+            showPostForm();
+        });
+
+        // Cancel Post Edit/Creation
+        cancelPostBtn.addEventListener('click', function () {
+            hidePostForm();
+        });
+
+        // Show Post Form
+        function showPostForm(post = null) {
+            // Populate categories in select
+            postCategorySelect.innerHTML = '<option value="">اختر تصنيف</option>';
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.name;
+                option.textContent = category.name;
+                postCategorySelect.appendChild(option);
+            });
+
+            if (post) {
+                document.getElementById('post-form-title').innerHTML = '<i class="fas fa-edit"></i> تعديل المنشور';
+                document.getElementById('post-id').value = post.id;
+                document.getElementById('post-title').value = post.title;
+                document.getElementById('post-category').value = post.category;
+                document.getElementById('post-content').value = post.content.replace(/<br>/g, '\n');
+                document.getElementById('post-image').value = post.image;
+                document.getElementById('post-status').value = post.status;
+            } else {
+                document.getElementById('post-form-title').innerHTML = '<i class="fas fa-plus"></i> إضافة منشور جديد';
+                postForm.reset();
+                document.getElementById('post-id').value = '';
+                document.getElementById('post-status').value = 'published';
+            }
+
+            // Hide tabs and show form
+            document.querySelector('.admin-tabs').classList.add('hidden');
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            postFormContainer.classList.remove('hidden');
+        }
+
+        // Hide Post Form
+        function hidePostForm() {
+            postFormContainer.classList.add('hidden');
+            document.querySelector('.admin-tabs').classList.remove('hidden');
+            document.getElementById('posts-tab').classList.add('active');
+        }
+
+        // Add/Edit Post
+        postForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const postId = document.getElementById('post-id').value;
+            const title = document.getElementById('post-title').value;
+            const category = document.getElementById('post-category').value;
+            const content = document.getElementById('post-content').value.replace(/\n/g, '<br>');
+            const image = document.getElementById('post-image').value || 'https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=Tech+Blog';
+            const status = document.getElementById('post-status').value;
+
+            if (postId) {
+                // Edit existing post
+                const index = posts.findIndex(post => post.id === parseInt(postId));
+                if (index !== -1) {
+                    posts[index] = {
+                        ...posts[index],
+                        title,
+                        category,
+                        content,
+                        image,
+                        status
+                    };
+                }
+            } else {
+                // Add new post
+                const newPost = {
+                    id: posts.length > 0 ? Math.max(...posts.map(p => p.id)) + 1 : 1,
+                    title,
+                    category,
+                    content,
+                    date: new Date().toISOString().split('T')[0],
+                    image,
+                    status,
+                    views: 0
+                };
+                posts.push(newPost);
+
+                // Update category count
+                updateCategoryCount(category, 1);
+            }
+
+            // Reset form and hide it
+            hidePostForm();
+
+            // Update UI
+            renderBlogPosts();
+            renderPostsList();
+            renderCategories();
+            renderAdminCategories();
+            renderPopularPosts();
+            updateStats();
+        });
+
+        // Update category count
+        function updateCategoryCount(categoryName, change) {
+            const category = categories.find(c => c.name === categoryName);
+            if (category) {
+                category.count += change;
+            } else {
+                categories.push({
+                    name: categoryName,
+                    color: '#2563eb',
+                    count: 1
+                });
+            }
+        }
+
+        // Render Blog Posts
+        function renderBlogPosts() {
+            postsContainer.innerHTML = '';
+            const publishedPosts = posts.filter(post => post.status === 'published');
+
+            if (publishedPosts.length === 0) {
+                postsContainer.innerHTML = '<div class="text-center">لا توجد منشورات متاحة حالياً</div>';
+                return;
+            }
+
+            publishedPosts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-card';
+                postElement.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" class="post-image">
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span class="post-date">${post.date}</span>
+                            <span class="post-category">${post.category}</span>
+                        </div>
+                        <h2 class="post-title">${post.title}</h2>
+                        <p class="post-excerpt">${post.content.replace(/<br>/g, ' ').substring(0, 150)}...</p>
+                        <a href="#" class="read-more" data-id="${post.id}">
+                            <i class="fas fa-book-reader"></i> قراءة المزيد
+                        </a>
+                    </div>
+                `;
+                postsContainer.appendChild(postElement);
+            });
+
+            // Add event listeners to read more buttons
+            document.querySelectorAll('.read-more').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const postId = parseInt(this.getAttribute('data-id'));
+                    showSinglePost(postId);
+                });
+            });
+        }
+
+        // Show Single Post
+        function showSinglePost(id) {
+            const post = posts.find(p => p.id === id);
+            if (post) {
+                // Increase view count
+                post.views += 1;
+
+                singlePostContent.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" style="width:100%; border-radius:8px; margin-bottom:20px;">
+                    <div class="post-meta">
+                        <span class="post-date">${post.date}</span>
+                        <span class="post-category">${post.category}</span>
+                        <span><i class="fas fa-eye"></i> ${post.views} مشاهدة</span>
+                    </div>
+                    <h1 class="post-title">${post.title}</h1>
+                    <div class="post-content">
+                        ${post.content}
+                    </div>
+                `;
+
+                blogPostsContainer.classList.add('hidden');
+                singlePostContainer.classList.remove('hidden');
+            }
+        }
+
+        // Hide Single Post
+        function hideSinglePost() {
+            singlePostContainer.classList.add('hidden');
+            blogPostsContainer.classList.remove('hidden');
+        }
+
+        // Back to Blog
+        backToBlogBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            hideSinglePost();
+        });
+
+        // Render Categories
+        function renderCategories() {
+            categoriesList.innerHTML = '';
+            categories.forEach(category => {
+                const categoryElement = document.createElement('li');
+                categoryElement.innerHTML = `
+                    <a href="#">
+                        ${category.name}
+                        <span class="category-count">${category.count}</span>
+                    </a>
+                `;
+                categoriesList.appendChild(categoryElement);
+            });
+        }
+
+        // Render Admin Categories
+        function renderAdminCategories() {
+            adminCategoriesList.innerHTML = '';
+            categories.forEach(category => {
+                const categoryElement = document.createElement('li');
+                categoryElement.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0;">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background-color:${category.color};"></span>
+                            ${category.name}
+                        </div>
+                        <div>
+                            <span class="category-count">${category.count}</span>
+                            <button class="btn btn-danger btn-sm delete-category" data-name="${category.name}" style="padding:3px 8px; margin-right:10px;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                adminCategoriesList.appendChild(categoryElement);
+            });
+
+            // Add event listeners to delete category buttons
+            document.querySelectorAll('.delete-category').forEach(button => {
+                button.addEventListener('click', function () {
+                    const categoryName = this.getAttribute('data-name');
+                    deleteCategory(categoryName);
+                });
+            });
+        }
+
+        // Render Popular Posts
+        function renderPopularPosts() {
+            popularPostsList.innerHTML = '';
+            // Sort posts by views and take top 3
+            const popularPosts = [...posts]
+                .filter(post => post.status === 'published')
+                .sort((a, b) => b.views - a.views)
+                .slice(0, 3);
+
+            popularPosts.forEach(post => {
+                const postElement = document.createElement('li');
+                postElement.innerHTML = `
+                    <a href="#" class="popular-post" data-id="${post.id}">
+                        ${post.title}
+                        <span><i class="fas fa-eye"></i> ${post.views}</span>
+                    </a>
+                `;
+                popularPostsList.appendChild(postElement);
+            });
+
+            // Add event listeners to popular post links
+            document.querySelectorAll('.popular-post').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const postId = parseInt(this.getAttribute('data-id'));
+                    showSinglePost(postId);
+                });
+            });
+        }
+
+        // Render Posts List in Admin Panel
+        function renderPostsList() {
+            postsList.innerHTML = '';
+
+            if (posts.length === 0) {
+                postsList.innerHTML = '<div class="text-center">لا توجد منشورات</div>';
+                return;
+            }
+
+            posts.forEach(post => {
+                const postItem = document.createElement('li');
+                postItem.className = 'post-item';
+                postItem.innerHTML = `
+                    <div class="post-item-info">
+                        <h4>${post.title}</h4>
+                        <div class="post-item-meta">
+                            <span>${post.date}</span>
+                            <span>${post.category}</span>
+                            <span><i class="fas fa-eye"></i> ${post.views} مشاهدة</span>
+                            <span class="post-status ${post.status === 'published' ? 'published' : 'draft'}">
+                                ${post.status === 'published' ? 'منشور' : 'مسودة'}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn btn-warning edit-post" data-id="${post.id}">
+                            <i class="fas fa-edit"></i> تعديل
+                        </button>
+                        <button class="btn btn-danger delete-post" data-id="${post.id}">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </div>
+                `;
+                postsList.appendChild(postItem);
+            });
+
+            // Add event listeners to edit and delete buttons
+            document.querySelectorAll('.edit-post').forEach(button => {
+                button.addEventListener('click', function () {
+                    const postId = parseInt(this.getAttribute('data-id'));
+                    editPost(postId);
+                });
+            });
+
+            document.querySelectorAll('.delete-post').forEach(button => {
+                button.addEventListener('click', function () {
+                    const postId = parseInt(this.getAttribute('data-id'));
+                    deletePost(postId);
+                });
+            });
+        }
+
+        // Edit Post
+        function editPost(id) {
+            const post = posts.find(p => p.id === id);
+            if (post) {
+                showPostForm(post);
+            }
+        }
+
+        // Delete Post
+        function deletePost(id) {
+            if (confirm('هل أنت متأكد من حذف هذا المنشور؟')) {
+                const post = posts.find(p => p.id === id);
+                if (post) {
+                    // Update category count
+                    updateCategoryCount(post.category, -1);
+                }
+
+                posts = posts.filter(post => post.id !== id);
+                renderBlogPosts();
+                renderPostsList();
+                renderCategories();
+                renderAdminCategories();
+                renderPopularPosts();
+                updateStats();
+            }
+        }
+
+        // Add Category
+        categoryForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const categoryName = document.getElementById('category-name').value.trim();
+            const categoryColor = document.getElementById('category-color').value;
+
+            if (categoryName && !categories.find(c => c.name === categoryName)) {
+                categories.push({
+                    name: categoryName,
+                    color: categoryColor,
+                    count: 0
+                });
+                renderCategories();
+                renderAdminCategories();
+                categoryForm.reset();
+            }
+        });
+
+        // Delete Category
+        function deleteCategory(name) {
+            // Check if category has posts
+            const categoryPosts = posts.filter(post => post.category === name);
+            if (categoryPosts.length > 0) {
+                alert('لا يمكن حذف التصنيف لأنه يحتوي على منشورات. يرجى نقل المنشورات إلى تصنيف آخر أولاً.');
+                return;
+            }
+
+            if (confirm(`هل أنت متأكد من حذف تصنيف "${name}"؟`)) {
+                categories = categories.filter(c => c.name !== name);
+                renderCategories();
+                renderAdminCategories();
+            }
+        }
+
+        // Update Stats
+        function updateStats() {
+            const today = new Date().toISOString().split('T')[0];
+            const todayPosts = posts.filter(post => post.date === today).length;
+
+            totalPostsEl.textContent = posts.length;
+            totalCategoriesEl.textContent = categories.length;
+            todayPostsEl.textContent = todayPosts;
+        }
+
+        // Load Settings
+        function loadSettings() {
+            document.getElementById('blog-title').value = settings.blogTitle;
+            document.getElementById('blog-description').value = settings.blogDescription;
+            document.getElementById('posts-per-page').value = settings.postsPerPage;
+        }
+
+        // Save Settings
+        settingsForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            settings.blogTitle = document.getElementById('blog-title').value;
+            settings.blogDescription = document.getElementById('blog-description').value;
+            settings.postsPerPage = parseInt(document.getElementById('posts-per-page').value);
+
+            alert('تم حفظ الإعدادات بنجاح');
+        });
+    </script>
+</body>
+
+</html>

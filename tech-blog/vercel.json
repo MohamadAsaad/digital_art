@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "tech_blog/**/*.php",
+      "use": "@vercel/php"
+    },
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/tech_blog/(.*)",
+      "dest": "/tech_blog/index.php"
+    },
+    {
+      "src": "/tech_blog/admin/(.*)",
+      "dest": "/tech_blog/admin/index.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "APP_ENV": "production"
+  }
+}
