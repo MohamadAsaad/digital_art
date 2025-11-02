@@ -1,117 +1,94 @@
-async function loadComponent(componentPath, placeholderId) {
-    const placeholder = document.getElementById(placeholderId);
-    if (!placeholder) {
-        console.error(`Element with id ${placeholderId} not found.`);
-        return;
-    }
-
-    // مؤشر تحميل مؤقت
-    placeholder.innerHTML = '<div class="loading-spinner">Loading...</div>';
-
+/**
+ * ===========================================================
+ * Dynamic Component Loader + Header/Dropdown Controller (Stable)
+ * ===========================================================
+ */
+async function loadComponent(url, targetId) {
     try {
-        const response = await fetch(componentPath);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.text();
-        placeholder.innerHTML = data;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const html = await response.text();
+        const target = document.getElementById(targetId);
+        if (!target) return console.error(`❌ Element with id="${targetId}" not found.`);
+        target.innerHTML = html;
 
-        // تهيئة الأحداث الخاصة بكل مكون
-        if (placeholderId === 'header') {
-            initializeHeaderEvents();
-        } else if (placeholderId === 'contact') {
-            initializeContactForm();
-        }
+        if (targetId === "header") initializeHeader();
+        if (targetId === "footer") initializeFooter();
     } catch (error) {
-        placeholder.innerHTML = '<div>Error loading component.</div>';
-        console.error('Error loading component:', error);
+        console.error(`❌ Error loading ${url}:`, error);
     }
 }
 
-// تهيئة نموذج الاتصال بعد تحميله
-function initializeContactForm() {
-    const form = document.querySelector('.php-email-form');
-    if (!form) return;
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadComponent("header.html", "header");
+    await loadComponent("footer.html", "footer");
+});
 
-    const loading = form.querySelector('.loading');
-    const errorMessage = form.querySelector('.error-message');
-    const sentMessage = form.querySelector('.sent-message');
+/* ===========================================================
+   HEADER INITIALIZATION
+=========================================================== */
+function initializeHeader() {
+    const body = document.body;
+    const header = document.querySelector(".header");
+    const mobileToggle = header.querySelector(".mobile-nav-toggle");
+    const themeToggle = header.querySelector("#themeToggle");
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        loading.style.display = 'block';
-        errorMessage.style.display = 'none';
-        sentMessage.style.display = 'none';
-
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.text())
-            .then(text => {
-                loading.style.display = 'none';
-
-                if (text.trim() === 'OK') {
-                    sentMessage.style.display = 'block';
-                    form.reset();
-                } else {
-                    errorMessage.innerHTML = text;
-                    errorMessage.style.display = 'block';
-                }
-            })
-            .catch(error => {
-                loading.style.display = 'none';
-                errorMessage.innerHTML = 'حدث خطأ أثناء إرسال النموذج.';
-                errorMessage.style.display = 'block';
-            });
-    });
-}
-
-// تهيئة زر القائمة والمظهر الليلي في الهيدر
-function initializeHeaderEvents() {
-    const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-    if (mobileNavToggleBtn) {
-        mobileNavToggleBtn.addEventListener('click', () => {
-            document.querySelector('body').classList.toggle('mobile-nav-active');
-            mobileNavToggleBtn.classList.toggle('bi-list');
-            mobileNavToggleBtn.classList.toggle('bi-x');
+    /* ---------- Mobile Nav Toggle ---------- */
+    if (mobileToggle) {
+        mobileToggle.addEventListener("click", () => {
+            body.classList.toggle("mobile-nav-active");
+            mobileToggle.classList.toggle("bi-list");
+            mobileToggle.classList.toggle("bi-x");
         });
     }
 
-    const themeToggleBtn = document.getElementById('themeToggle');
-    if (!themeToggleBtn) return;
-
-    const icon = themeToggleBtn.querySelector('i');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    updateIcon(savedTheme === 'dark');
-
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        updateIcon(newTheme === 'dark');
+    /* ---------- Dropdown Logic ---------- */
+    header.querySelectorAll(".navmenu .dropdown > a").forEach((link) => {
+        const parentLi = link.parentElement;
+        link.addEventListener("click", (e) => {
+            if (window.innerWidth < 1200) {
+                e.preventDefault();
+                parentLi.classList.toggle("active");
+            }
+        });
     });
 
-    function updateIcon(isDark) {
-        if (isDark) {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        } else {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
+    /* ---------- Deep Dropdown Direction ---------- */
+    function adjustDropdownDirection(li, dropdownMenu) {
+        const rect = dropdownMenu.getBoundingClientRect();
+        if (rect.right > window.innerWidth - 20) li.classList.add("submenu-left");
+        else li.classList.remove("submenu-left");
     }
+
+    header.querySelectorAll(".navmenu .dropdown").forEach((li) => {
+        const submenu = li.querySelector("ul");
+        if (submenu) li.addEventListener("mouseenter", () => adjustDropdownDirection(li, submenu));
+    });
+
+    /* ---------- Theme Toggle ---------- */
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            document.documentElement.classList.toggle("dark-theme");
+            const icon = themeToggle.querySelector("i");
+            icon.classList.toggle("fa-sun");
+            icon.classList.toggle("fa-moon");
+        });
+    }
+
+    /* ---------- Scroll Effect (Optimized) ---------- */
+    let isScrolled = false;
+    window.addEventListener("scroll", () => {
+        const scrolledNow = window.scrollY > 40;
+        if (scrolledNow !== isScrolled) {
+            isScrolled = scrolledNow;
+            header.classList.toggle("scrolled", isScrolled);
+        }
+    });
 }
 
-// تحميل جميع المكونات عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', async function () {
-    await loadComponent('header.html', 'header');
-    await loadComponent('footer.html', 'footer');
-    await loadComponent('contact-form.html', 'contact'); // هذا الذي يحتوي على النموذج
-});
+/* ===========================================================
+   FOOTER INITIALIZATION (optional placeholder)
+=========================================================== */
+function initializeFooter() {
+    // يمكن إضافة أكواد تفاعلية للفوتر هنا
+}
