@@ -329,7 +329,7 @@ section,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
+  /* padding: 0.75rem 1.5rem; */
   font-family: var(--heading-font);
   font-weight: 600;
   font-size: 1rem;
@@ -423,6 +423,18 @@ section,
   opacity: 1;
 }
 
+
+/* Contact form message */
+.form-status {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--accent-color);
+  transition: opacity 0.3s ease;
+  min-height: 22px; /* يمنع القفز عند الظهور */
+}
+
+
 /*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
@@ -430,7 +442,7 @@ section,
   background-color: var(--nav-bg);
   color: var(--text-color);
   padding: 20px 15px;
-  transition: all 0.5s;
+  transition: all 0.5s ease;
   z-index: 997;
   position: fixed;
   top: 0;
@@ -445,11 +457,14 @@ section,
   padding: 5px 25px;
   margin: 0 auto;
   max-width: 1140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 /*--------------------------------------------------------------
 # Responsive Header Adjustments
 --------------------------------------------------------------*/
-/* for desktop */
 @media (min-width: 767px) {
   .header {
     padding: 20px 0;
@@ -465,14 +480,18 @@ section,
   background: var(--nav-bg);
 }
 
+/*--------------------------------------------------------------
+# Logo
+--------------------------------------------------------------*/
 .header .logo {
   line-height: 1;
   padding-left: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .header .logo img {
-  /* max-height: 36px; */
-  max-height: 58px; 
+  max-height: 58px;
   margin-inline-end: 8px;
 }
 
@@ -483,80 +502,152 @@ section,
   color: var(--heading-color);
 }
 
-.header .btn-getstarted {
+/*--------------------------------------------------------------
+# Header Buttons (Language & Theme)
+--------------------------------------------------------------*/
+.header .btn-Language {
   color: var(--accent-color);
   font-size: 17px;
   font-weight: normal;
-  /* padding: 10px 13px; */
-  /* margin: 0 0 0 30px; */
-  /* border: 1px solid #ffffff30; */
   border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
   transition: 0.3s;
 }
 
-.header .btn-getstarted:hover,
-.header .btn-getstarted:focus:hover {
+.header .btn-Language:hover,
+.header .btn-Language:focus:hover {
   color: var(--text-color);
-  /* background: color-mix(in srgb, var(--accent-color), transparent 15%); */
 }
 
-/* Navigation Menu - المحافظة على الشكل القديم */
-.navmenu {
-  padding: 0;
+/*--------------------------------------------------------------
+# Navigation Menu - Desktop (RTL FIXED)
+--------------------------------------------------------------*/
+@media (min-width: 1200px) {
+  .navmenu {
+    padding: 0;
+  }
+
+  .navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .navmenu li {
+    position: relative;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-color);
+    padding: 18px 15px;
+    font-size: 16px;
+    font-family: var(--nav-font);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+  }
+
+  .navmenu li:last-child a {
+    padding-right: 0;
+  }
+
+  .navmenu li:hover > a,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-hover);
+  }
+
+  /* Dropdown */
+  .navmenu .dropdown ul {
+            margin: 0;
+        padding: 10px 0;
+        background: #12023157;
+        display: block;
+        position: absolute;
+        visibility: hidden;
+        right: 14px;
+        top: 130%;
+        opacity: 0;
+        transition: 0.3s;
+        border-radius: 8px;
+        z-index: 99;
+        box-shadow: 0px 0px 30px rgb(0 0 0 / 86%);
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(25px);
+  }
+
+  .navmenu .dropdown ul li {
+    min-width: 200px;
+  }
+
+  .navmenu .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    color: var(--nav-color);
+    align-items: center;
+    transition: 0.3s;
+  }
+
+  .navmenu .dropdown ul a i {
+    font-size: 12px;
+  }
+
+  .navmenu .dropdown ul a:hover,
+  .navmenu .dropdown ul .active:hover,
+  .navmenu .dropdown ul li:hover > a {
+    color: var(--nav-hover);
+    background-color: rgba(72, 149, 239, 0.1);
+  }
+
+  .navmenu .dropdown:hover > ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+
+  /* ✅ Deep Dropdown (RTL direction) */
+  .navmenu .dropdown .dropdown ul {
+    top: 0;
+    left: -95%;
+    right: auto;
+    visibility: hidden;
+  }
+
+  .navmenu .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: -100%;
+    right: auto;
+    visibility: visible;
+  }
 }
 
-.navmenu ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
-
-.navmenu li {
-  position: relative;
-}
-
-.navmenu a,
-.navmenu a:focus {
-  color: var(--nav-color);
-  padding: 18px 15px;
-  font-size: 16px;
-  font-family: var(--nav-font);
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  white-space: nowrap;
-  transition: 0.3s;
-}
-
-.navmenu a i,
-.navmenu a:focus i {
-  font-size: 12px;
-  line-height: 0;
-  margin-left: 5px;
-  transition: 0.3s;
-}
-
-.navmenu li:last-child a {
-  padding-right: 0;
-}
-
-.navmenu li:hover>a,
-.navmenu .active,
-.navmenu .active:focus {
-  color: var(--nav-hover);
-}
-
-/* Mobile Navigation - المحافظة على الشكل القديم */
-@media (max-width: 767px) {
+/*--------------------------------------------------------------
+# Navigation Menu - Mobile
+--------------------------------------------------------------*/
+@media (max-width: 1199px) {
   .mobile-nav-toggle {
-    display: none; /* Hide menu button */
+    color: var(--nav-color);
+    font-size: 28px;
+    line-height: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 9999;
   }
 
   .navmenu {
@@ -565,109 +656,213 @@ section,
   }
 
   .navmenu ul {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    display: flex !important;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0;
-    padding: 10px 0;
-/*     background-color: #262626; */
-    background-color: var(--surface-color);
-    backdrop-filter: blur(5px);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
     list-style: none;
-  }
-
-  .navmenu li {
-    flex: 1;
-    text-align: center;
+    position: absolute;
+    inset: 60px 20px 20px 20px;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 8px;
+    background-color: rgba(15, 23, 42, 0.95);
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 9998;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 80px);
   }
 
   .navmenu a,
   .navmenu a:focus {
-    color: var(--nav-color);
-    padding: 8px 5px;
-    font-size: 12px;
+    color: var(--text-color);
+    padding: 12px 20px;
+    font-family: var(--nav-font);
+    font-size: 16px;
+    font-weight: 500;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    white-space: nowrap;
-    transition: 0.3s;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
   }
 
-  /* Icons for navigation items */
-  .navmenu li:nth-child(1) a::before {
-    content: "\f015";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 18px;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .navmenu li:nth-child(2) a::before {
-    content: "\f007";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 18px;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .navmenu li:nth-child(3) a::before {
-    content: "\f005";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 18px;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .navmenu li:nth-child(4) a::before {
-    content: "\f0c8";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 18px;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .navmenu li:nth-child(5) a::before {
-    content: "\f155";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 18px;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .navmenu li:nth-child(6) a::before {
-    content: "\f0e0";
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 18px;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  /* Active and hover states */
   .navmenu a:hover,
   .navmenu .active,
   .navmenu .active:focus {
     color: var(--accent-color);
   }
 
-  /* Main content padding to prevent overlap with fixed navigation */
-  main {
-    padding-bottom: 70px;
+  /* Dropdown Mobile */
+  .navmenu .dropdown > a {
+    position: relative;
+    cursor: pointer;
   }
+
+  .navmenu .dropdown > a .toggle-dropdown {
+    transition: transform 0.3s ease;
+    margin-right: 8px;
+  }
+
+  .navmenu .dropdown.active > a .toggle-dropdown {
+    transform: rotate(180deg);
+  }
+
+  .navmenu .dropdown > ul {
+    display: none;
+    position: static;
+    background: rgb(13 32 69);
+    border: none;
+    box-shadow: none;
+    margin: 5px 0 5px 25px;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .navmenu .dropdown.active > ul {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .navmenu .dropdown ul li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navmenu .dropdown ul li:last-child {
+    border-bottom: none;
+  }
+
+  .navmenu .dropdown ul a {
+    padding: 12px 25px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .navmenu .dropdown ul a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    padding-right: 30px;
+  }
+
+  .navmenu .dropdown ul a i {
+    background: none !important;
+    color: inherit !important;
+    transform: none !important;
+    width: auto;
+    height: auto;
+  }
+
+  .navmenu .active > a,
+  .navmenu .active > a:focus {
+    color: var(--accent-color);
+  }
+
+  .navmenu .active > a i,
+  .navmenu .active > a:focus i {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+  }
+}
+
+/*--------------------------------------------------------------
+# Mobile Navigation Active State
+--------------------------------------------------------------*/
+.mobile-nav-active {
+  overflow: hidden;
+}
+
+.mobile-nav-active .navmenu {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 37, 41, 0.8);
+  transition: 0.3s;
+}
+
+.mobile-nav-active .navmenu > ul {
+  display: block;
+}
+
+.mobile-nav-active .mobile-nav-toggle {
+  color: #fff;
+  position: absolute;
+  font-size: 32px;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+}
+
+/*--------------------------------------------------------------
+# Animations
+--------------------------------------------------------------*/
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*--------------------------------------------------------------
+# Touch Enhancements
+--------------------------------------------------------------*/
+@media (max-width: 1199px) and (hover: none) {
+  .navmenu .dropdown > a {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .navmenu a {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .navmenu .dropdown ul a {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.navmenu .dropdown > a {
+  touch-action: manipulation;
+}
+
+.navmenu a:active {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.1s;
+}
+
+/*--------------------------------------------------------------
+# Theme Toggle
+--------------------------------------------------------------*/
+#themeToggle {
+  border: 1px solid var(--border-color);
+  color: var(--nav-color);
+  transition: all 0.3s;
+}
+
+#themeToggle:hover {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  border-color: var(--accent-color);
 }
 
 /*--------------------------------------------------------------
@@ -776,13 +971,13 @@ section,
   z-index: -1;
 }
 
-.loading-container {
+.circle-loading .loading-container {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.loading {
+.circle-loading .loading-container .loading {
   position: absolute;
   border: 2px solid rgba(72, 149, 239, 0.4);
   border-radius: 50%;
@@ -806,9 +1001,9 @@ section,
   }
 }
 
-.loading.one { animation-delay: 0s; }
-.loading.two { animation-delay: 1s; }
-.loading.three { animation-delay: 2s; }
+.circle-loading .loading-container .loading.one { animation-delay: 0s; }
+.circle-loading .loading-container .loading.two { animation-delay: 1s; }
+.circle-loading .loading-container .loading.three { animation-delay: 2s; }
 
 /* تحسين الأداء على الشاشات الصغيرة */
 @media (max-width: 767px) {
@@ -2792,26 +2987,26 @@ section,
   font-size: 1.1rem;
 }
 
-.footer .copyright {
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--border-color);
-  text-align: center;
+.copyright {
+  font-size: 15px;
+  color: #eee;
 }
 
-.footer .copyright p {
-  margin-bottom: 0;
-  color: var(--text-secondary);
+.copyright .credits {
+  font-size: 14px;
+  color: #ccc;
+  transition: color 0.3s ease;
+  
 }
 
-.footer .credits {
-  margin-top: 0.5rem;
-  font-size: 0.8125rem;
-  text-align: center;
-  color: var(--text-secondary);
+.copyright .credits a {
+  color: #00bcd4;
+  font-weight: 600;
 }
 
-.footer .credits a {
+.copyright .credits a:hover {
   color: var(--accent-color);
+  text-decoration: underline;
 }
 
 /*--------------------------------------------------------------
