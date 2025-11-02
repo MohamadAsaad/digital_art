@@ -1,37 +1,74 @@
-<div
-    class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+<!-- ===========================================================
+# Header Section (Fixed & Responsive, RTL & Mobile Ready)
+=========================================================== -->
+<header class="header fixed-top d-flex align-items-center">
+    <div class="header-container container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/logo.png" alt="Designer Logo">
-        <!-- <h1 class="sitename">Digital Art</h1> -->
-    </a>
+        <!-- 🔹 Mobile Nav Toggle -->
+        <i class="mobile-nav-toggle d-xl-none bi bi-list" aria-label="Toggle navigation" role="button"></i>
+        <!-- 🔹 Right-side Controls -->
+        <div class="header-actions d-flex align-items-center gap-2">
+            <!-- Theme toggle -->
+            <button id="themeToggle" class="btn btn-sm btn-outline-light" title="تبديل الثيم" aria-pressed="false">
+                <i class="fa-solid fa-moon"></i>
+            </button>
 
-    <nav id="navmenu" class="navmenu">
-        <ul dir="rtl">
-            <li><a href="/" class="active">الرئيسية</a></li>
-            <li><a href="about.html">من نحن</a></li>
-            <li><a href="#features">المميزات</a></li>
-            <li><a href="services.html">الخدمات</a></li>
-            <li><a href="#pricing">الأسعار</a></li>
-            <li><a href="contact.html">تواصل معنا</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none "></i>
-    </nav>
-
-    <div class="d-flex align-items-center gap-3">
-        <!-- زر التبديل بين الوضع الليلي والفاتح -->
-        <button id="themeToggle" class="btn btn-sm btn-outline-light" title="تبديل الثيم">
-            <i class="fa-solid fa-moon"></i>
-        </button>
+            <!-- Language Button -->
+            <a class="btn-Language btn btn-sm" href="en/" role="button" aria-label="English">EN</a>
+        </div>
 
 
-        <!-- رابط اللغة -->
-        <a class="btn-getstarted" href="en/">en</a>
+        <!-- 🔹 Navigation Menu -->
+        <nav id="navmenu" class="navmenu" dir="rtl" aria-label="Main navigation">
+            <ul>
+                <li><a href="/" class="active">الرئيسية</a></li>
+                <li><a href="about.html">من نحن</a></li>
+                <li><a href="#features">المميزات</a></li>
+
+                <!-- الخدمات -->
+                <li class="dropdown">
+                    <a href="#"><span>الخدمات</span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="#">تصميم مواقع الويب</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>خدمات متقدمة</span><i class="bi bi-chevron-left toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="#">خدمة متقدمة 1</a></li>
+                                <li><a href="#">خدمة متقدمة 2</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">التصميم الجرافيكي</a></li>
+                        <li><a href="#">التسويق الرقمي</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#pricing">الأسعار</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+
+                <!-- الأدوات -->
+                <li class="dropdown">
+                    <a href="#"><span>الأدوات</span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="#">أداة 1</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>خيارات إضافية</span><i class="bi bi-chevron-left toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="#">خيار 1</a></li>
+                                <li><a href="#">خيار 2</a></li>
+                                <li><a href="#">خيار 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">أداة 2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 🔹 Logo -->
+        <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+            <h1 class="sitename">DIGITAL</h1>
+            <img src="assets/img/logo.png" alt="Digital Logo">
+
+        </a>
     </div>
-
-
-</div>
-
-
-
-
+</header>
